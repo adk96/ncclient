@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>  
+      <property name="log.url">${bundle:application:log.url}</property>    
+    </Properties> 
+  
+    <Appenders>
+             
+        <RollingFile
+            name="system"
+            fileName="${log.url}/client.log"
+            filePattern="${log.url}/client.log.%d{yyyy-MM-dd}.gz"
+            ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %c %-5p: %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+        
+    </Appenders>
+    
+    <Loggers>                
+        <Root level="info">
+            <AppenderRef ref="system"/>
+        </Root>
+    </Loggers>
+    
+</Configuration>
